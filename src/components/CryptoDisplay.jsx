@@ -2,7 +2,12 @@ function CryptoDisplay(props) {
   if (props.priceChange > 0) {
     return (
       <tr>
-        <td>{props.CryptoCurrency}</td>
+        <td>
+          <div className="nameIcon">
+            <span>{props.CryptoCurrency}</span>
+            <img className="logoImg" src={props.logo} alt={props.CryptoSymbol}/>
+          </div>
+        </td>
         <td>{props.CryptoSymbol}</td>
         <td>{props.rank}</td>
         <td>${props.price}</td>
@@ -12,7 +17,12 @@ function CryptoDisplay(props) {
   } else if (props.priceChange < 0) {
     return (
       <tr>
-        <td>{props.CryptoCurrency}</td>
+        <td>
+          <div className="nameIcon">
+            <span>{props.CryptoCurrency}</span>
+            <img className="logoImg" src={props.logo} alt={props.CryptoSymbol}/>
+          </div>
+        </td>
         <td>{props.CryptoSymbol}</td>
         <td>{props.rank}</td>
         <td>${props.price}</td>
@@ -22,11 +32,16 @@ function CryptoDisplay(props) {
   } else {
     return (
       <tr>
-        <td>{props.CryptoCurrency}</td>
+        <td>
+          <div className="nameIcon">
+            <span>{props.CryptoCurrency}</span>
+            <img className="logoImg" src={props.logo} alt={props.CryptoSymbol}/>
+          </div>
+        </td>
         <td>{props.CryptoSymbol}</td>
         <td>{props.rank}</td>
         <td>${props.price}</td>
-        <td className>0.00%</td>
+        <td>0.00%</td>
       </tr>
     )
   }

@@ -19,17 +19,19 @@ function App() {
     <div className="app-container">
       <h1 className="header">React Cryptocurrency App</h1>
       <p className='description'>The top 20 ranked cryptocurrencies from CoinCap API 2.0 are listed below.</p>
-      <table class="table-content">
-        <tr>
-          <th>Name</th>
-          <th>Symbol</th>
-          <th>Rank</th>
-          <th>Price (USD)</th>
-          <th>Price Change (%)</th>
-        </tr>
-        {data.map(({ name, symbol, rank, priceUsd, changePercent24Hr }) => (
-          <CryptoDisplay CryptoCurrency={name} CryptoSymbol={symbol} rank={rank} price={parseFloat(priceUsd).toFixed(2)} priceChange={parseFloat(changePercent24Hr).toFixed(2)} />
-        ))}
+      <table className="table-content">
+        <tbody>
+          <tr>
+            <th>Name</th>
+            <th>Symbol</th>
+            <th>Rank</th>
+            <th>Price (USD)</th>
+            <th>24H Price Change (%)</th>
+          </tr>
+          {data.map(({ name, symbol, rank, priceUsd, changePercent24Hr }, i) => (
+            <CryptoDisplay key={i} CryptoCurrency={name} logo={`https://assets.coincap.io/assets/icons/${symbol.toLowerCase()}@2x.png`} CryptoSymbol={symbol} rank={rank} price={parseFloat(priceUsd).toFixed(2)} priceChange={parseFloat(changePercent24Hr).toFixed(2)} />
+          ))}
+        </tbody>
       </table>
       <p className="notice">This application utilizes <a className="underline" href="https://docs.coincap.io/">CoinCap API 2.0</a></p>
     </div>
