@@ -47,7 +47,7 @@ function App() {
                 price={parseFloat(priceUsd).toFixed(2)}
                 priceChange={parseFloat(changePercent24Hr).toFixed(2)}
               />
-            )
+            ),
           )}
         </tbody>
       </table>
