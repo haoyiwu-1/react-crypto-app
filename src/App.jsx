@@ -6,21 +6,26 @@ function App() {
   const url = "https://api.coincap.io/v2/assets?limit=20";
   const [data, setData] = useState([]);
 
+  const fetchData = async () => {
+    const result = await fetch(url);
+    const data = await result.json();
+    setData(data.data);
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      const result = await fetch(url);
-      const data = await result.json();
-      setData(data.data);
-    };
     fetchData();
+
+    const interval = setInterval(fetchData, 60000);
+
+    return () => clearInterval(interval);
   }, []);
 
   return (
     <div className="app-container">
       <h1 className="header">React Cryptocurrency App</h1>
       <p className="description">
-        The top 20 ranked cryptocurrencies from CoinCap API 2.0 are listed
-        below.
+        The top 20 ranked cryptocurrencies from the CoinCap API 2.0 are
+        displayed below, with data updated every minute.
       </p>
       <table className="table-content">
         <tbody>
@@ -42,7 +47,7 @@ function App() {
                 price={parseFloat(priceUsd).toFixed(2)}
                 priceChange={parseFloat(changePercent24Hr).toFixed(2)}
               />
-            ),
+            )
           )}
         </tbody>
       </table>
