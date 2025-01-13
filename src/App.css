@@ -1,5 +1,5 @@
 .app-container {
-  @apply flex flex-col items-center;
+  @apply flex flex-col items-center px-4;
 }
 
 .header {
