@@ -27,30 +27,36 @@ function App() {
         The top 20 ranked cryptocurrencies from the CoinCap API 2.0 are
         displayed below, with data updated every minute.
       </p>
-      <table className="table-content">
-        <tbody>
-          <tr>
-            <th>Name</th>
-            <th>Symbol</th>
-            <th>Rank</th>
-            <th>Price (USD)</th>
-            <th>24H Price Change (%)</th>
-          </tr>
-          {data.map(
-            ({ name, symbol, rank, priceUsd, changePercent24Hr }, i) => (
-              <CryptoDisplay
-                key={i}
-                CryptoCurrency={name}
-                logo={`https://assets.coincap.io/assets/icons/${symbol.toLowerCase()}@2x.png`}
-                CryptoSymbol={symbol}
-                rank={rank}
-                price={parseFloat(priceUsd).toFixed(2)}
-                priceChange={parseFloat(changePercent24Hr).toFixed(2)}
-              />
-            )
-          )}
-        </tbody>
-      </table>
+      {data && data.length > 0 ? (
+        <table className="table-content">
+          <tbody>
+            <tr>
+              <th>Name</th>
+              <th>Symbol</th>
+              <th>Rank</th>
+              <th>Price (USD)</th>
+              <th>24H Price Change (%)</th>
+            </tr>
+            {data.map(
+              ({ name, symbol, rank, priceUsd, changePercent24Hr }, i) => (
+                <CryptoDisplay
+                  key={i}
+                  CryptoCurrency={name}
+                  logo={`https://assets.coincap.io/assets/icons/${symbol.toLowerCase()}@2x.png`}
+                  CryptoSymbol={symbol}
+                  rank={rank}
+                  price={parseFloat(priceUsd).toFixed(2)}
+                  priceChange={parseFloat(changePercent24Hr).toFixed(2)}
+                />
+              )
+            )}
+          </tbody>
+        </table>
+      ) : (
+        <div className="text-xl text-center text-red-500">
+          No data available. The API is experiencing issues.
+        </div>
+      )}
       <p className="notice">
         This application utilizes{" "}
         <a className="underline" href="https://docs.coincap.io/">
