@@ -21,7 +21,7 @@ function App() {
   }, []);
 
   return (
-    <div className="app-container">
+    <div className="app-container poppins-font">
       <h1 className="header">React Cryptocurrency App</h1>
       <p className="description">
         The top 20 ranked cryptocurrencies from the CoinCap API 2.0 are
@@ -47,7 +47,7 @@ function App() {
                 price={parseFloat(priceUsd).toFixed(2)}
                 priceChange={parseFloat(changePercent24Hr).toFixed(2)}
               />
-            ),
+            )
           )}
         </tbody>
       </table>
