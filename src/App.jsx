@@ -5,11 +5,17 @@ import CryptoDisplay from "./components/CryptoDisplay";
 function App() {
   const url = "https://api.coincap.io/v2/assets?limit=20";
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const fetchData = async () => {
-    const result = await fetch(url);
-    const data = await result.json();
-    setData(data.data);
+    try {
+      const result = await fetch(url);
+      const data = await result.json();
+      setData(data.data);
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -27,7 +33,9 @@ function App() {
         The top 20 ranked cryptocurrencies from the CoinCap API 2.0 are
         displayed below, with data updated every minute.
       </p>
-      {data && data.length > 0 ? (
+      {loading ? (
+        <div></div>
+      ) : data && data.length > 0 ? (
         <table className="table-content">
           <tbody>
             <tr>
